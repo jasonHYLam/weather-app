@@ -63,3 +63,11 @@ async function getWeatherDataForLocation(location) {
 }
 
 getWeatherDataForLocation('santa moniz');
+const locationSubmit = document.querySelector('#location-submit')
+const locationSearch = document.querySelector('#location-search');
+
+locationSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(locationSearch.value)
+    getWeatherDataForLocation(locationSearch.value)
+})
