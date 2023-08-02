@@ -5,10 +5,31 @@ body {
 
 #body {
     background-image: url('wi-day-cloudy-windy.svg');
-    padding: 0 10vh 0;
-    background-color: antiquewhite;
-    /* background-color: black; */
+    background-size: 120px 60px;
+    /* padding: 0 10vh 0; */
+    background-color: #191A1C;
+    position: relative;
+    color: white;
+    z-index: 100;
 }
+
+#body > * {
+}
+
+#body::before {
+    z-index: -1;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 120%;
+    position: absolute;
+    /* display: block; */
+    background-image: url('wi-day-cloudy-windy.svg');
+    background-size: 120px 60px;
+    /* padding: 0 10vh 0; */
+    margin: -20px 0 0 60px;
+}
+
 #left, #weather-right {
     display: flex;
     flex-direction: column;

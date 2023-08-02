@@ -8,3 +8,4 @@ The aim of this project is to learn asynchronous code in order to create a weath
 
 - Using imported icons
 - Using async/await to fetch weather API data, and pause the proceeding code until fetched.
+- Created a staggered background.
