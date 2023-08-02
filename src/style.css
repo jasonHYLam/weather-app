@@ -1,11 +1,23 @@
-#location, #weather, #weather-right {
+body {
+    margin: 0;
+    background-color: black;
+}
+
+#body {
+    padding: 0 10vh 0;
+    background-color: antiquewhite;
+}
+#left, #weather-right {
     display: flex;
     flex-direction: column;
-    background-color: antiquewhite;
 }
 
 #weather-right {
     text-align: end;
     gap: 20px;
+}
 
+#lat-lon, #temp, #location {
+    display: flex;
+    gap: 20px;
 }

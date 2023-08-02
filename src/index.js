@@ -1,5 +1,6 @@
 
 import './style.css';
+import './css/weather-icons.min.css'
 
 let currentWeatherData = {};
 
@@ -79,7 +80,7 @@ async function getWeatherDataForLocation(location) {
         data.current.precip_mm,
     )
 
-    console.log(data.current.precip_in);
+    console.log(data.location.name);
 
     setWeatherImage(data.current.condition.icon)
     return weatherDataObject;
@@ -88,7 +89,6 @@ async function getWeatherDataForLocation(location) {
 function setWeatherImage(image) {
     const weatherImage = document.querySelector('#weather-image')
     weatherImage.src = image;
-
 }
 
 function setDisplayWithData(id, data) {
@@ -97,17 +97,16 @@ function setDisplayWithData(id, data) {
 }
 
 function setEntireDisplay() {
+    setDisplayWithData('#name', currentWeatherData.location);
+    setDisplayWithData('#country', currentWeatherData.country);
+    setDisplayWithData('#condition', currentWeatherData.condition);
     setDisplayWithData('#time', currentWeatherData.time);
     setDisplayWithData('#date', currentWeatherData.date);
-    setDisplayWithData('#country', currentWeatherData.country);
-    setDisplayWithData('#name', currentWeatherData.name);
-    setDisplayWithData('#lat', currentWeatherData.lat);
-    setDisplayWithData('#lon', currentWeatherData.lon);
-    
-    setDisplayWithData('#condition', currentWeatherData.condition);
-    setDisplayWithData('#cloud', currentWeatherData.cloud);
+    setDisplayWithData('#lat', `${currentWeatherData.lat}°`);
+    setDisplayWithData('#lon', `${currentWeatherData.lon}°`);
     setDisplayWithData('#tempC', `${currentWeatherData.tempC} °C`);
     setDisplayWithData('#tempF', `${currentWeatherData.tempF} °F`);
+
     setDisplayWithData('#gustMph', `${currentWeatherData.gustMph} mph`);
     setDisplayWithData('#humidity', `${currentWeatherData.humidity} %`);
     setDisplayWithData('#precipitationMm', `${currentWeatherData.precipitationMm} mm`);
