@@ -4,8 +4,10 @@ body {
 }
 
 #body {
+    background-image: url('wi-day-cloudy-windy.svg');
     padding: 0 10vh 0;
     background-color: antiquewhite;
+    /* background-color: black; */
 }
 #left, #weather-right {
     display: flex;
@@ -20,4 +22,8 @@ body {
 #lat-lon, #temp, #location {
     display: flex;
     gap: 20px;
+}
+
+.wi {
+    color: red;
 }
