@@ -1,5 +1,11 @@
-// create class for weatherData objects
 
+let currentWeatherData = {};
+
+function setCurrentWeatherData(newWeatherData) {
+    currentWeatherData = newWeatherData;
+
+}
+// create class for weatherData objects
 class WeatherData {
     constructor(
         location, 
@@ -58,7 +64,28 @@ async function getWeatherDataForLocation(location) {
         data.current.precip_mm,
     )
 
+    setWeatherImage(data.current.condition.icon)
+    setCurrentWeatherData(weatherDataObject);
+    console.log(currentWeatherData);
+    
+
     console.log(weatherDataObject);
+
+}
+
+function setWeatherImage(image) {
+    const weatherImage = document.querySelector('#weather-image')
+    weatherImage.src = image;
+
+}
+
+function setDisplayWithData(id, data) {
+    const el = document.querySelector(id);
+    el.textContent = data;
+}
+
+function setEntireDisplay() {
+    setDisplayWithData('#country', currentWeatherData.country);
 
 }
 
@@ -70,4 +97,9 @@ locationSubmit.addEventListener('click', (e) => {
     e.preventDefault();
     console.log(locationSearch.value)
     getWeatherDataForLocation(locationSearch.value)
+    console.log(currentWeatherData)
+    setEntireDisplay();
+
+
+
 })
