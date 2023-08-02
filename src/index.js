@@ -113,11 +113,11 @@ function setEntireDisplay() {
 }
 
 getWeatherDataAndSetDisplay('santa moniz');
-const locationSubmit = document.querySelector('#location-submit')
+// const locationSubmit = document.querySelector('#location-submit')
 const locationSearch = document.querySelector('#location-search');
+const form = document.querySelector('form')
 
-locationSubmit.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-    // getWeatherDataForLocation(locationSearch.value)
     getWeatherDataAndSetDisplay(locationSearch.value);
 })

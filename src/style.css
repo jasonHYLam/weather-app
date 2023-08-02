@@ -5,6 +5,10 @@ body {
     width: 100vw;
 }
 
+#location-search{
+    /* height: 50px; */
+    padding: 15px 15px 15px;
+}
 #header, #footer {
     height: 10vh;
 }
