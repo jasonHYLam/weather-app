@@ -1,4 +1,6 @@
 
+import './style.css';
+
 let currentWeatherData = {};
 
 function setCurrentWeatherData(newWeatherData) {
@@ -8,6 +10,8 @@ function setCurrentWeatherData(newWeatherData) {
 // create class for weatherData objects
 class WeatherData {
     constructor(
+        time,
+        date,
         location, 
         country, 
         lat, 
@@ -23,19 +27,21 @@ class WeatherData {
         precipitationMm,
         )
         {
-        this.location = location;
-        this.country = country; 
-        this.lat = lat;
-        this.lon = lon;
-        this.cloud = cloud;
-        this.condition = condition;
-        this.tempC = tempC;
-        this.tempF = tempF;
-        this.gustKph = gustKph;
-        this.gustMph = gustMph;
-        this.humidity = humidity;
-        this.precipitationInch = precipitationInch;
-        this.precipitationMm = precipitationMm;
+            this.time = time;
+            this.date = date;
+            this.location = location;
+            this.country = country; 
+            this.lat = lat;
+            this.lon = lon;
+            this.cloud = cloud;
+            this.condition = condition;
+            this.tempC = tempC;
+            this.tempF = tempF;
+            this.gustKph = gustKph;
+            this.gustMph = gustMph;
+            this.humidity = humidity;
+            this.precipitationInch = precipitationInch;
+            this.precipitationMm = precipitationMm;
         }
 
 }
@@ -45,6 +51,7 @@ async function getWeatherDataAndSetDisplay(location) {
     setCurrentWeatherData(weatherData);
     setEntireDisplay();
 }
+
 // obtain weather data for a location
 async function getWeatherDataForLocation(location) {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=7bfb43be76904809a18182305233007&q=${location}&aqi=no`, {
@@ -55,6 +62,8 @@ async function getWeatherDataForLocation(location) {
     console.log(data);
 
     const weatherDataObject = new WeatherData(
+        data.location.localtime,
+        data.location.localtime,
         data.location.name,
         data.location.country,
         data.location.lat,
@@ -70,13 +79,8 @@ async function getWeatherDataForLocation(location) {
         data.current.precip_mm,
     )
 
-    // this is probably bad code... 
     setWeatherImage(data.current.condition.icon)
-    // setCurrentWeatherData(weatherDataObject);
-    // setEntireDisplay();
-
     return weatherDataObject;
-
 }
 
 function setWeatherImage(image) {
@@ -91,6 +95,8 @@ function setDisplayWithData(id, data) {
 }
 
 function setEntireDisplay() {
+    setDisplayWithData('#time', currentWeatherData.time);
+    setDisplayWithData('#date', currentWeatherData.date);
     setDisplayWithData('#country', currentWeatherData.country);
     setDisplayWithData('#name', currentWeatherData.name);
     setDisplayWithData('#lat', currentWeatherData.lat);

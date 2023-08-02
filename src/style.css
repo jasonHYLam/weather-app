@@ -1,0 +1,5 @@
+#location, #weather {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+}
