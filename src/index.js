@@ -64,9 +64,12 @@ async function getWeatherDataForLocation(location) {
         data.current.precip_mm,
     )
 
+    // this is probably bad code... 
     setWeatherImage(data.current.condition.icon)
     setCurrentWeatherData(weatherDataObject);
     console.log(currentWeatherData);
+
+    setEntireDisplay();
     
 
     console.log(weatherDataObject);
@@ -86,6 +89,19 @@ function setDisplayWithData(id, data) {
 
 function setEntireDisplay() {
     setDisplayWithData('#country', currentWeatherData.country);
+    setDisplayWithData('#name', currentWeatherData.name);
+    setDisplayWithData('#lat', currentWeatherData.lat);
+    setDisplayWithData('#lon', currentWeatherData.lon);
+    
+    setDisplayWithData('#condition', currentWeatherData.condition);
+    setDisplayWithData('#cloud', currentWeatherData.cloud);
+    setDisplayWithData('#tempC', currentWeatherData.tempC);
+    setDisplayWithData('#tempF', currentWeatherData.tempF);
+    setDisplayWithData('#gustKph', currentWeatherData.gustKph);
+    setDisplayWithData('#gustMph', currentWeatherData.gustMph);
+    setDisplayWithData('#humidity', currentWeatherData.humidity);
+    setDisplayWithData('#precipiationInch', currentWeatherData.precip_in);
+    setDisplayWithData('#precipitationMm', currentWeatherData.precip_mm);
 
 }
 
@@ -95,10 +111,9 @@ const locationSearch = document.querySelector('#location-search');
 
 locationSubmit.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log(locationSearch.value)
     getWeatherDataForLocation(locationSearch.value)
     console.log(currentWeatherData)
-    setEntireDisplay();
+    // setEntireDisplay();
 
 
 
