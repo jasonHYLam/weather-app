@@ -39,6 +39,12 @@ class WeatherData {
         }
 
 }
+
+async function getWeatherDataAndSetDisplay(location) {
+    const weatherData = await getWeatherDataForLocation(location);
+    setCurrentWeatherData(weatherData);
+    setEntireDisplay();
+}
 // obtain weather data for a location
 async function getWeatherDataForLocation(location) {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=7bfb43be76904809a18182305233007&q=${location}&aqi=no`, {
@@ -66,13 +72,10 @@ async function getWeatherDataForLocation(location) {
 
     // this is probably bad code... 
     setWeatherImage(data.current.condition.icon)
-    setCurrentWeatherData(weatherDataObject);
-    console.log(currentWeatherData);
+    // setCurrentWeatherData(weatherDataObject);
+    // setEntireDisplay();
 
-    setEntireDisplay();
-    
-
-    console.log(weatherDataObject);
+    return weatherDataObject;
 
 }
 
@@ -100,21 +103,16 @@ function setEntireDisplay() {
     setDisplayWithData('#gustKph', currentWeatherData.gustKph);
     setDisplayWithData('#gustMph', currentWeatherData.gustMph);
     setDisplayWithData('#humidity', currentWeatherData.humidity);
-    setDisplayWithData('#precipiationInch', currentWeatherData.precip_in);
+    setDisplayWithData('#precipitationInch', currentWeatherData.precip_in);
     setDisplayWithData('#precipitationMm', currentWeatherData.precip_mm);
-
 }
 
-getWeatherDataForLocation('santa moniz');
+getWeatherDataAndSetDisplay('santa moniz');
 const locationSubmit = document.querySelector('#location-submit')
 const locationSearch = document.querySelector('#location-search');
 
 locationSubmit.addEventListener('click', (e) => {
     e.preventDefault();
-    getWeatherDataForLocation(locationSearch.value)
-    console.log(currentWeatherData)
-    // setEntireDisplay();
-
-
-
+    // getWeatherDataForLocation(locationSearch.value)
+    getWeatherDataAndSetDisplay(locationSearch.value);
 })
