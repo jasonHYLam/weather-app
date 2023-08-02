@@ -8,8 +8,7 @@
 <body>
 
     <form action="">
-        <label for="location-search">Get weather for location: </label>
-        <input id="location-search" type="text">
+        <input id="location-search" type="text" placeholder="get weather for location" >
         <button id="location-submit">Search</button>
     </form>
    <img id="weather-image" src="" alt=""> 
@@ -28,10 +27,22 @@
         <div id="tempC"></div>
         <div id="tempF"></div>
         <div id="gustKph"></div>
-        <div id="gustMph"></div>
-        <div id="humidity"></div>
-        <div id="precipitationInch"></div>
-        <div id="precipitationMm"></div>
+
+        <div id="weather-right">
+
+            <div id="gust-container">
+                <div class="weather-label">Gust Speed</div>
+                <div id="gustMph"></div>
+            </div>
+            <div id="humidity-container">
+                <div class="weather-label">Humidity</div>
+                <div id="humidity"></div>
+            </div>
+            <div id="precipitation-container">
+                <div class="precipitation-label">Precipitation</div>
+                <div id="precipitationMm"></div>
+            </div>
+        </div>
     </div>
     <img id="background-image" src="" alt="">
    </div>

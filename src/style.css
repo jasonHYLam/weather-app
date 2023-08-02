@@ -1,5 +1,11 @@
-#location, #weather {
+#location, #weather, #weather-right {
     display: flex;
     flex-direction: column;
     background-color: antiquewhite;
+}
+
+#weather-right {
+    text-align: end;
+    gap: 20px;
+
 }

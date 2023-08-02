@@ -62,8 +62,8 @@ async function getWeatherDataForLocation(location) {
     console.log(data);
 
     const weatherDataObject = new WeatherData(
-        data.location.localtime,
-        data.location.localtime,
+        data.location.localtime.split(" ")[1],
+        data.location.localtime.split(" ")[0],
         data.location.name,
         data.location.country,
         data.location.lat,
@@ -78,6 +78,8 @@ async function getWeatherDataForLocation(location) {
         data.current.precip_in,
         data.current.precip_mm,
     )
+
+    console.log(data.current.precip_in);
 
     setWeatherImage(data.current.condition.icon)
     return weatherDataObject;
@@ -104,13 +106,11 @@ function setEntireDisplay() {
     
     setDisplayWithData('#condition', currentWeatherData.condition);
     setDisplayWithData('#cloud', currentWeatherData.cloud);
-    setDisplayWithData('#tempC', currentWeatherData.tempC);
-    setDisplayWithData('#tempF', currentWeatherData.tempF);
-    setDisplayWithData('#gustKph', currentWeatherData.gustKph);
-    setDisplayWithData('#gustMph', currentWeatherData.gustMph);
-    setDisplayWithData('#humidity', currentWeatherData.humidity);
-    setDisplayWithData('#precipitationInch', currentWeatherData.precip_in);
-    setDisplayWithData('#precipitationMm', currentWeatherData.precip_mm);
+    setDisplayWithData('#tempC', `${currentWeatherData.tempC} °C`);
+    setDisplayWithData('#tempF', `${currentWeatherData.tempF} °F`);
+    setDisplayWithData('#gustMph', `${currentWeatherData.gustMph} mph`);
+    setDisplayWithData('#humidity', `${currentWeatherData.humidity} %`);
+    setDisplayWithData('#precipitationMm', `${currentWeatherData.precipitationMm} mm`);
 }
 
 getWeatherDataAndSetDisplay('santa moniz');
