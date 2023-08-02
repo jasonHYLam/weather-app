@@ -48,42 +48,54 @@ class WeatherData {
 }
 
 async function getWeatherDataAndSetDisplay(location) {
-    const weatherData = await getWeatherDataForLocation(location);
-    setCurrentWeatherData(weatherData);
-    setEntireDisplay();
+    try {
+        const weatherData = await getWeatherDataForLocation(location);
+        setCurrentWeatherData(weatherData);
+        setEntireDisplay();
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 // obtain weather data for a location
 async function getWeatherDataForLocation(location) {
-    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=7bfb43be76904809a18182305233007&q=${location}&aqi=no`, {
-        mode: 'cors'
-    });
+    try {
+        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=7bfb43be76904809a18182305233007&q=${location}&aqi=no`, {
+            mode: 'cors'
+        });
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        } 
 
-    const data = await response.json();
-    console.log(data);
+        const data = await response.json();
+        const weatherDataObject = new WeatherData(
+            data.location.localtime.split(" ")[1],
+            data.location.localtime.split(" ")[0],
+            data.location.name,
+            data.location.country,
+            data.location.lat,
+            data.location.lon,
+            data.current.cloud,
+            data.current.condition.text,
+            data.current.feelslike_c,
+            data.current.feelslike_f,
+            data.current.gust_kph,
+            data.current.gust_mph,
+            data.current.humidity,
+            data.current.precip_in,
+            data.current.precip_mm,
+        )
+        setWeatherImage(data.current.condition.icon)
+        return weatherDataObject;
+        } catch (error) {
+            console.log(error)
+            clearInput();
+        }
+}
 
-    const weatherDataObject = new WeatherData(
-        data.location.localtime.split(" ")[1],
-        data.location.localtime.split(" ")[0],
-        data.location.name,
-        data.location.country,
-        data.location.lat,
-        data.location.lon,
-        data.current.cloud,
-        data.current.condition.text,
-        data.current.feelslike_c,
-        data.current.feelslike_f,
-        data.current.gust_kph,
-        data.current.gust_mph,
-        data.current.humidity,
-        data.current.precip_in,
-        data.current.precip_mm,
-    )
-
-    console.log(data.location.name);
-
-    setWeatherImage(data.current.condition.icon)
-    return weatherDataObject;
+function clearInput() {
+    const locationSearch = document.querySelector('#location-search');
+    locationSearch.value= '';
 }
 
 function setWeatherImage(image) {
@@ -113,7 +125,6 @@ function setEntireDisplay() {
 }
 
 getWeatherDataAndSetDisplay('santa moniz');
-// const locationSubmit = document.querySelector('#location-submit')
 const locationSearch = document.querySelector('#location-search');
 const form = document.querySelector('form')
 

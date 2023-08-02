@@ -5,10 +5,16 @@ body {
     width: 100vw;
 }
 
-#location-search{
-    /* height: 50px; */
-    padding: 15px 15px 15px;
+#location-search::placeholder {
+    color: red;
+    opacity: 1;
 }
+#location-search {
+    padding: 15px 15px 15px;
+    opacity: 0.4;
+}
+
+
 #header, #footer {
     height: 10vh;
 }
@@ -23,9 +29,9 @@ body {
 }
 
 #body {
-    padding: 0 10vh 0;
+    padding: 50px 10vh 0;
     color: white;
-    height: 80vh;
+    /* height: 80vh; */
 }
 
 #body > * {
