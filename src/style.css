@@ -5,6 +5,10 @@ body {
     width: 100vw;
 }
 
+#header, #footer {
+    height: 10vh;
+}
+
 #background {
     background-image: url('wi-day-cloudy-windy.svg');
     background-color: #191A1C;
